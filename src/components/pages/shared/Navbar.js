@@ -2,11 +2,13 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from "./Loading";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
-  if(loading){
-    return 'loading...'
+  if (loading) {
+    return <Loading></Loading>;
   }
   const navbarItems = (
     <>
@@ -14,16 +16,20 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>
-      <li>
         <NavLink to="/contactUs">Contact Us</NavLink>
       </li>
       <li>
         <NavLink to="/review">Review</NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink to="/dashboard/myOrders">Dashboard</NavLink>
+        </li>
+      )}
       {user ? (
-        <Link className="btn btn-primary" to="/signup">Sign Up</Link>
+        <button onClick={() => signOut(auth)} className="btn btn-primary">
+          Sign Out
+        </button>
       ) : (
         <li>
           <NavLink to="/login">Log in</NavLink>

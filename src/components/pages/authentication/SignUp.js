@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import google from "../../../assets/icons/Group 573.png";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle,  useUpdateProfile } from "react-firebase-hooks/auth";
+import Loading from "../shared/Loading";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, signupUser, signupLoading, signupError] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [signInWithGoogle, GUser, GLoading, GError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
@@ -20,7 +21,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   if(GLoading || signupLoading || updating){
-    return 'loading...';
+    return <Loading></Loading>;
   }
 
   if(signupUser || GUser){

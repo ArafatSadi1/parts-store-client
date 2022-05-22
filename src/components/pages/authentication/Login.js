@@ -7,6 +7,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import Loading from "../shared/Loading";
 
 const Login = () => {
   const {
@@ -24,14 +25,14 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
   if (loading || GLoading) {
-    return 'loading...';
+    return <Loading></Loading>
   }
 
   if (user || GUser) {
     navigate(from, { replace: true });
   }
 
-  const onSubmit = async (data) => {
+  const onSubmit = async(data) => {
     await signInWithEmailAndPassword(data.email, data.password);
   };
   return (

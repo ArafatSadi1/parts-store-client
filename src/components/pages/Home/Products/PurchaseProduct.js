@@ -1,5 +1,10 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import storageBox from "../../../../assets/products/storageBox.jpg";
+import auth from "../../../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../../shared/Loading";
+import { toast } from 'react-toastify';
 
 const PurchaseProduct = () => {
   const product = {
@@ -12,6 +17,27 @@ const PurchaseProduct = () => {
     available: 450,
     minOrder: 100,
   };
+
+  const [user, loading] = useAuthState(auth);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  const onSubmit = async (data) => {
+    if(data.quantity < product.minOrder){
+      return toast.error(`Your Order Must be more than ${product.minOrder}`)
+    }
+    if(data.quantity > product.available){
+      return toast.error(`Sorry! Your Order More than our avaiable stock`)
+    }
+
+  };
+  
   return (
     <div class="min-h-screen bg-slate-50">
       <div class="grid grid-cols-1 lg:grid-cols-2 p-12 justify-center items-center">
@@ -33,31 +59,130 @@ const PurchaseProduct = () => {
             <span className="text-gray-500 font-semibold">piece</span>
           </p>
           <p className="font-bold text-lg">
-            Available Quantity: {product.available}{" "}
+            Available Quantity: {product.available}
             <span className="text-gray-500 font-semibold">piece</span>
           </p>
           <p className="font-bold text-lg">
-            Minimum Order: {product.minOrder}{" "}
+            Minimum Order: {product.minOrder}
             <span className="text-gray-500 font-semibold">piece</span>
           </p>
-          <div>
-            <input
-              type="number"
-              placeholder="Quantity"
-              class="input input-bordered border-secondary w-32 mt-2"
-            />
-            <input
-              type="text"
-              placeholder="Phone Number"
-              class="input input-bordered border-secondary max-w-xs w-full mt-2 block"
-            />
-            <input
-              type="text"
-              placeholder="Your Address"
-              class="input input-bordered border-secondary max-w-xs w-full mt-2 block"
-            />
-          </div>
-          <button class="btn btn-primary block mt-4">Book Now</button>
+          <form onSubmit={handleSubmit(onSubmit)} className="form-control lg:mt-2">
+            <div className="flex flex-col lg:flex-row gap-2">
+              <div>
+                <input
+                  type="text"
+                  readOnly
+                  value={user?.displayName}
+                  class="input input-bordered border-secondary max-w-xs w-full mt-2"
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Name is required",
+                    },
+                  })}
+                />
+                <label class="label">
+                  {errors?.name?.type === "required" && (
+                    <span className="label-text-alt text-error">
+                      {errors.name?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  readOnly
+                  value={user?.email}
+                  class="input input-bordered border-secondary max-w-xs w-full mt-2"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Email is required",
+                    },
+                  })}
+                />
+                <label class="label">
+                  {errors?.email?.type === "required" && (
+                    <span className="label-text-alt text-error">
+                      {errors.email?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-2">
+              <div>
+                <input
+                  type="number"
+                  placeholder="Quantity"
+                  class="input input-bordered border-secondary max-w-xs w-full mt-2"
+                  {...register("quantity", {
+                    required: {
+                      value: true,
+                      message: "Quantity is required",
+                    },
+                  })}
+                />
+                <label class="label">
+                  {errors?.quantity?.type === "required" && (
+                    <span className="label-text-alt text-error">
+                      {errors.quantity?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                  class="input input-bordered border-secondary max-w-xs w-full mt-2"
+                  {...register("phone", {
+                    required: {
+                      value: true,
+                      message: "Phone Number is required",
+                    },
+                  })}
+                />
+                <label class="label">
+                  {errors?.phone?.type === "required" && (
+                    <span className="label-text-alt text-error">
+                      {errors.phone?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-2">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Address"
+                  class="input input-bordered border-secondary max-w-xs w-full mt-2"
+                  {...register("address", {
+                    required: {
+                      value: true,
+                      message: "Address is required",
+                    },
+                  })}
+                />
+                <label class="label">
+                  {errors?.address?.type === "required" && (
+                    <span className="label-text-alt text-error">
+                      {errors.address?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <input
+                type="submit"
+                className="btn btn-secondary text-white font-semibold max-w-xs w-full lg:w-48 block mt-2"
+                value="Book Now"
+              />
+            </div>
+          </form>
         </div>
       </div>
     </div>
