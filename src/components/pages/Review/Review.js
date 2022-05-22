@@ -34,7 +34,7 @@ const Review = () => {
     },
   ];
   return (
-    <div className="mt-28 bg-slate-100 p-8">
+    <div className="mt-12 bg-base-100 p-8">
       <h2 className="text-5xl font-bold text-neutral text-center">
         What Our Customers Are Saying
       </h2>
