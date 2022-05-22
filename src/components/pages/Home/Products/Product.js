@@ -22,7 +22,7 @@ const Product = ({ product }) => {
         <p className="font-bold py-0">Available: {available}<span className="text-slate-500 font-semibold"> piece</span></p>
         <p className="font-bold">Min Order Qty: {minOrder}</p>
         <div class="card-actions justify-end">
-          <Link to='/purchase-product' class="btn btn-primary">Book Now</Link>
+          <Link to='/purchase-product' class="btn btn-primary">Check Out</Link>
         </div>
       </div>
     </div>
