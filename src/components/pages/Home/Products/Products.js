@@ -34,8 +34,8 @@ const Products = () => {
     return (
         <div className='mb-8 p-8 bg-slate-100'>
             <h4 className='text-lg text-center text-secondary'>TOP SALE IN THE WEEK</h4>
-            <h1 className='text-5xl text-neutral font-bold text-center'>Feature Products</h1>
-            <div className='grid grid-cols-1 lg:grid-cols-3 lg:mx-8 mt-6 gap-8'>
+            <h1 className='text-5xl text-neutral font-bold text-center divider'>Feature Products</h1>
+            <div className='grid grid-cols-1 lg:grid-cols-3 lg:mx-8 mt-12 gap-8'>
                 {products.map(product => <Product
                  key={product._id}
                  product={product}

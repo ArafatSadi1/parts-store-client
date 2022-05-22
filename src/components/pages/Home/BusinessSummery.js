@@ -5,14 +5,14 @@ import users from "../../../assets/icons/user.png";
 
 const BusinessSummery = () => {
   return (
-    <div className="my-8">
+    <div className="my-12 p-8">
       <h4 className="text-lg text-center text-secondary">
         We Try To Understand Client Expectation
       </h4>
       <h2 className="text-5xl font-bold text-neutral text-center divider">
         Our Achievement
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-12 mx-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 mx-12">
         <div class="bg-base-100 flex flex-col justify-center items-center">
             <img width={70} src={flag} alt="Shoes" />
             <h4 class="text-2xl font-bold text-secondary mt-4">72+</h4>
