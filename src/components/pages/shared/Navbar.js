@@ -10,6 +10,10 @@ const Navbar = () => {
   if (loading) {
     return <Loading></Loading>;
   }
+  const handleSignOut = () =>{
+    localStorage.removeItem('accessToken')
+    signOut(auth)
+  }
   const navbarItems = (
     <>
       <li>
@@ -27,7 +31,7 @@ const Navbar = () => {
         </li>
       )}
       {user ? (
-        <button onClick={() => signOut(auth)} className="btn btn-primary">
+        <button onClick={handleSignOut} className="btn btn-secondary text-gray-200">
           Sign Out
         </button>
       ) : (
@@ -38,7 +42,26 @@ const Navbar = () => {
     </>
   );
   return (
-    <div class="navbar bg-slate-100 sticky top-0 z-50 px-12">
+    <div class="navbar bg-slate-100 sticky top-0 z-50 px-4 lg:px-12">
+      <label
+        for="dashboard-sidebar"
+        class="btn btn-ghost drawer-button mr-2 lg:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </label>
       <div class="navbar-start">
         <Link to="/" class="normal-case text-2xl">
           Parts<span className="text-secondary">Store</span>

@@ -5,6 +5,7 @@ import auth from "../../../firebase.init";
 import google from "../../../assets/icons/Group 573.png";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle,  useUpdateProfile } from "react-firebase-hooks/auth";
 import Loading from "../shared/Loading";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, signupUser, signupLoading, signupError] =
@@ -20,11 +21,13 @@ const SignUp = () => {
   } = useForm();
   const navigate = useNavigate();
 
+  const [token] = useToken(signupUser || GUser)
+
   if(GLoading || signupLoading || updating){
     return <Loading></Loading>;
   }
 
-  if(signupUser || GUser){
+  if(token){
       navigate('/')
   }
   const onSubmit = async (data) => {
@@ -164,7 +167,7 @@ const SignUp = () => {
       </div>
       <div class="divider">OR</div>
       <p className="text-error text-sm">{GError?.message}</p>
-      <button onClick={()=>signInWithGoogle()} class="btn btn-outline mt-4 rounded-full pr-32">
+      <button onClick={()=>signInWithGoogle()} class="btn btn-outline rounded-full pr-32">
         <img className="mr-24" width={30} src={google} alt="" /> Continue With
         Google
       </button>
