@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const DeleteOrderModal = ({ deleteOrder, refetch, setDeleteOrder }) => {
+const DeleteOrderModal = ({ deleteOrder, setDeleteOrder, refetch }) => {
   const { productName, _id } = deleteOrder;
   const handleDeleteOrder = () => {
     fetch(`http://localhost:5000/order/${_id}`, {
@@ -14,8 +14,8 @@ const DeleteOrderModal = ({ deleteOrder, refetch, setDeleteOrder }) => {
     .then(data => {
         if(data.deletedCount){
             toast('Your Order Delete');
-            refetch();
-            setDeleteOrder(null)
+            setDeleteOrder(null);
+            refetch()
         }
     })
   };

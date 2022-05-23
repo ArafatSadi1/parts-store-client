@@ -7,12 +7,12 @@ import plus from "../../../../assets/icons/plus.png";
 import { toast } from "react-toastify";
 
 const PurchaseForm = ({ product, refetch }) => {
-  const [quantity, setQuantity] = useState(product.minOrder);
-  const { _id, picture, name, price, available, minOrder } = product;
+    const { _id, picture, name, price, available, minOrder } = product;
+    const [quantity, setQuantity] = useState(minOrder);
   const [user, loading] = useAuthState(auth);
 
-  if (loading) {
-    return <Loading></Loading>;
+  if (loading){ 
+    return <Loading></Loading>
   }
   const handleIncrease = () => {
     setQuantity((quantity) => quantity + 1);
@@ -41,14 +41,15 @@ const PurchaseForm = ({ product, refetch }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(order),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
+            e.target.reset()
           toast.success("Order success");
-          refetch();
         }
       });
   };

@@ -41,10 +41,9 @@ const Review = () => {
       <div className="my-20 grid grid-cols-1 lg:grid-cols-3 gap-4">
         {reviews.map((review) => (
           <div className="card shadow-lg p-4 bg-base-100" key={review._id}>
-            <p className="text-gray-500">
+            <p className="text-gray-500 text-center">
               "{review.text}"
               <span className="underline font-bold text-lg">
-                {" "}
                 {review.name}
               </span>
             </p>
