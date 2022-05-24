@@ -24,7 +24,7 @@ const MyOrderCard = ({ order, setDeleteOrder, deleteOrder, refetch }) => {
           </p>
           <p>Total Price: ${totalPrice}</p>
           {transactionId && (
-            <p className="mb-2 break-words">Transaction Id: {transactionId}</p>
+            <p className="mb-2 break-words">Transaction Id: <span className="text-secondary">{transactionId}</span></p>
           )}
         </div>
         <div class="card-actions justify-end">

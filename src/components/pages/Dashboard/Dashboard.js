@@ -17,7 +17,7 @@ const Dashboard = () => {
               <NavLink to='myOrders'>My Orders</NavLink>
           </li>
           <li>
-              <NavLink to='addReview'>Add Review</NavLink>
+              <NavLink to='addReview'>Add A Review</NavLink>
           </li>
           <li>
               <NavLink to='myProfile'>My Profile</NavLink>
