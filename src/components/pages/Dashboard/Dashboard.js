@@ -53,7 +53,7 @@ const Dashboard = () => {
           {dbUser.role === "admin" && (
             <>
               <li>
-                <NavLink to="/dashboard/addProduct">Add Product</NavLink>
+                <NavLink to="/dashboard/addProduct">Add A Product</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/manageProducts">Manage Products</NavLink>

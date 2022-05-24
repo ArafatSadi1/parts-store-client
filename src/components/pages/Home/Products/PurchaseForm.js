@@ -2,24 +2,18 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import Loading from "../../shared/Loading";
-import minus from "../../../../assets/icons/minus-sign.png";
-import plus from "../../../../assets/icons/plus.png";
 import { toast } from "react-toastify";
 
 const PurchaseForm = ({ product }) => {
-    const { _id, picture, name, price, available, minOrder } = product;
-    const [quantity, setQuantity] = useState(minOrder);
+  const { _id, picture, name, price, available, minOrder } = product;
+  const [quantity, setQuantity] = useState(0);
+  const [minOrderErr, setMinOrderErr] = useState("");
+  const [maxOrderErr, setMaxOrderErr] = useState("");
   const [user, loading] = useAuthState(auth);
 
-  if (loading){ 
-    return <Loading></Loading>
+  if (loading) {
+    return <Loading></Loading>;
   }
-  const handleIncrease = () => {
-    setQuantity((quantity) => quantity + 1);
-  };
-  const handleDecrease = () => {
-    setQuantity((quantity) => quantity - 1);
-  };
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -48,32 +42,29 @@ const PurchaseForm = ({ product }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-            e.target.reset()
+          e.target.reset();
           toast.success("Order success");
         }
       });
   };
-
+  const handleQuantity = (event) => {
+    const quantity = event.target.value;
+    console.log(event.target.value)
+    if (quantity < minOrder) {
+      return setMinOrderErr(
+        "Your Order less Than Our Minimum Order Requirement"
+      );
+    }
+    if (quantity > available) {
+      return setMaxOrderErr("Your Order More Than Our Available Stock");
+    }
+    setQuantity(quantity);
+    setMinOrderErr("");
+    setMaxOrderErr("");
+  };
   return (
     <div className="w-full lg:w-3/4">
       <form onSubmit={handlePurchase} className="form-control lg:mt-2">
-        <div className="mt-2 pl-2 border border-secondary rounded-lg flex w-44">
-          <button onClick={handleDecrease} className="btn btn-ghost">
-            <img width={15} src={minus} alt="" />
-          </button>
-          <input type="text" value={quantity} class="input w-16 text-lg" />
-          <button onClick={handleIncrease} className="btn btn-ghost">
-            <img width={15} src={plus} alt="" />
-          </button>
-        </div>
-        {quantity > available && (
-          <p className="text-error">Your Order More Than Our Stock</p>
-        )}
-        {quantity < minOrder && (
-          <p className="text-error">
-            Your Order less Than Our Minimum Order Requirement
-          </p>
-        )}
         <div className="flex flex-col lg:flex-row gap-2">
           <input
             type="text"
@@ -92,12 +83,22 @@ const PurchaseForm = ({ product }) => {
 
         <div className="flex flex-col lg:flex-row gap-2">
           <input
+            type="number"
+            onChange={handleQuantity}
+            name="quantity"
+            placeholder="Your Quantity"
+            class="input input-bordered border-secondary max-w-xs w-full mt-2"
+            required
+          />
+          <input
             type="text"
             name="address"
             placeholder="Your Address"
             class="input input-bordered border-secondary max-w-xs w-full mt-2"
             required
           />
+        </div>
+        <div className="flex flex-col lg:flex-row gap-2">
           <input
             type="text"
             name="phone"
@@ -105,16 +106,22 @@ const PurchaseForm = ({ product }) => {
             class="input input-bordered border-secondary max-w-xs w-full mt-2"
             required
           />
-        </div>
-        <div className="flex flex-col lg:flex-row gap-2">
           <input
             type="submit"
-            disabled={quantity > available || quantity < minOrder}
+            disabled={minOrderErr || maxOrderErr}
             className="btn btn-secondary text-white font-semibold max-w-xs w-full lg:w-56 block mt-2"
             value="Order Now"
           />
         </div>
       </form>
+      {minOrderErr && (
+        <p className="text-error">
+          Your Order less Than Our Minimum Order Requirement
+        </p>
+      )}
+      {maxOrderErr && (
+        <p className="text-error">Your Order More Than Our Stock</p>
+      )}
     </div>
   );
 };

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Product = ({ product }) => {
   const { _id, price, about, picture, name, available, minOrder } = product;
 
-  const refreshPage = () => {
-    setTimeout(() => {
-      window.location.reload(true);
-    }, 0);
-  };
+  // const refreshPage = () => {
+  //   setTimeout(() => {
+  //     window.location.reload(true);
+  //   }, 0);
+  // };
 
   return (
     <div class="card bg-base-100 shadow-xl">
@@ -20,7 +20,7 @@ const Product = ({ product }) => {
           <span className="font-bold text-neutral">Parts:</span> {name}
         </h2>
         <p className="text-gray-500">
-          <span className="font-bold text-gray-700">About Parts</span> {about}
+          <span className="font-bold text-gray-700">About Parts:</span> {about}
         </p>
         <p className="font-bold">
           Price: ${price}/
@@ -34,7 +34,7 @@ const Product = ({ product }) => {
         <div class="card-actions justify-end">
           <Link
             to={`/purchase-product/${_id}`}
-            onClick={refreshPage}
+            // onClick={refreshPage}
             class="btn btn-primary"
           >
             Check Out
