@@ -9,17 +9,15 @@ const useAdmin = (user) => {
       fetch(`http://localhost:5000/admin/${email}`, {
         method: "GET",
         headers: {
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
-      .then(res => res.json())
-      .then(data => {
-          setAdmin(data.admin)
-          setAdminLoading(false)
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          setAdmin(data.admin);
+          setAdminLoading(false);
+        });
     }
   }, [user]);
   return [admin, adminLoading];
