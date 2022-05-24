@@ -6,7 +6,7 @@ import minus from "../../../../assets/icons/minus-sign.png";
 import plus from "../../../../assets/icons/plus.png";
 import { toast } from "react-toastify";
 
-const PurchaseForm = ({ product, refetch }) => {
+const PurchaseForm = ({ product }) => {
     const { _id, picture, name, price, available, minOrder } = product;
     const [quantity, setQuantity] = useState(minOrder);
   const [user, loading] = useAuthState(auth);

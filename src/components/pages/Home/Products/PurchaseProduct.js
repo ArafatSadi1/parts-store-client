@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import auth from "../../../../firebase.init";
 import Loading from "../../shared/Loading";
 import { useQuery } from "react-query";
@@ -6,10 +6,9 @@ import { useParams } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import PurchaseForm from "./PurchaseForm";
 
-
 const PurchaseProduct = () => {
   const { id } = useParams();
-  const { data: product, isLoading, refetch } = useQuery("product", () =>
+  const { data: product, isLoading } = useQuery('product',()=>
     fetch(`http://localhost:5000/product/${id}`, {
       method: "GET",
       headers: {
@@ -24,7 +23,6 @@ const PurchaseProduct = () => {
       return res.json();
     })
   );
-
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -57,7 +55,7 @@ const PurchaseProduct = () => {
             Minimum Order: {product.minOrder}
             <span className="text-gray-500 font-semibold">piece</span>
           </p>
-          <PurchaseForm refetch={refetch} product={product}></PurchaseForm>
+          <PurchaseForm product={product}></PurchaseForm>
         </div>
       </div>
     </div>

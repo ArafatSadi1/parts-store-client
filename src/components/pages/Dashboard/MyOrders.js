@@ -1,20 +1,21 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import Loading from "../../pages/shared/Loading";
-import DeleteOrderModal from "./DeleteOrderModal";
 import MyOrderCard from "./MyOrderCard";
 
 const MyOrders = () => {
+  const [user, loading] = useAuthState(auth);
   const [deleteOrder, setDeleteOrder] = useState({});
   const {
     data: orders,
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("http://localhost:5000/order").then((res) => res.json())
+    fetch(`http://localhost:5000/order/${user?.email}`).then((res) => res.json())
   );
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
   return (

@@ -13,6 +13,10 @@ import MyOrders from "./components/pages/Dashboard/MyOrders";
 import AddReview from "./components/pages/Dashboard/AddReview";
 import MyProfile from "./components/pages/Dashboard/MyProfile";
 import Payment from "./components/pages/Dashboard/Payment";
+import AddProduct from "./components/pages/Dashboard/AdminRoute/AddProduct"
+import ManageProducts from "./components/pages/Dashboard/AdminRoute/ManageProducts";
+import ManageAllOrders from "./components/pages/Dashboard/AdminRoute/ManageAllOrders";
+import MakeAdmin from "./components/pages/Dashboard/AdminRoute/MakeAdmin";
 
 function App() {
   return (
@@ -38,10 +42,15 @@ function App() {
             </RequiredAuth>
           }
         >
+          <Route path="myProfile" element={<MyProfile />}></Route>
           <Route path="myOrders" element={<MyOrders />}></Route>
           <Route path="payment/:orderId" element={<Payment/>}></Route>
           <Route path="addReview" element={<AddReview />}></Route>
-          <Route path="myProfile" element={<MyProfile />}></Route>
+
+          <Route path="addProduct" element={<AddProduct/>}></Route>
+          <Route path="manageProducts" element={<ManageProducts/>}></Route>
+          <Route path="manageAllOrders" element={<ManageAllOrders/>}></Route>
+          <Route path="makeAdmin" element={<MakeAdmin/>}></Route>
         </Route>
       </Routes>
       <ToastContainer />
