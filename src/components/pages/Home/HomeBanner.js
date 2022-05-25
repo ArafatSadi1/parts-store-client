@@ -14,11 +14,9 @@ const HomeBanner = () => {
             <h3 className="text-2xl">
               Welcome To Parts<span className="text-secondary">Store</span>
             </h3>
-            <h1 class="mb-5 text-5xl font-bold">Find The Right Parts</h1>
-            <p class="my-8">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+            <h1 class="text-5xl font-bold">Find The Right Parts</h1>
+            <p class="my-8 text-lg">
+              we carry over 250 of the world's highest quality automotive parts brands across 42 product catagories
             </p>
           </div>
         </div>

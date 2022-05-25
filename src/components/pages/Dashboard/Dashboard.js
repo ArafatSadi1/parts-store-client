@@ -35,7 +35,7 @@ const Dashboard = () => {
       </div>
       <div class="drawer-side">
         <label for="dashboard-sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-52 bg-base-100 text-base-content">
+        <ul class="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
             <NavLink to="/dashboard/myProfile">My Profile</NavLink>
@@ -56,10 +56,10 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/addProduct">Add A Product</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageProducts">Manage Products</NavLink>
+                <NavLink to="/dashboard/manageProducts">Manage All Products</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageAllOrders">Manage Orders</NavLink>
+                <NavLink to="/dashboard/manageAllOrders">Manage All Orders</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
