@@ -1,11 +1,65 @@
-import React from 'react';
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import Loading from "../../shared/Loading";
+import DeleteProductModal from "./DeleteProductModal";
 
 const ManageProducts = () => {
-    return (
-        <div>
-            <h2>This is manage products</h2>
-        </div>
-    );
+    const [deleteProduct, setDeleteProduct] = useState({});
+  const { data: products, isLoading, refetch } = useQuery("manageProducts", () =>
+    fetch("http://localhost:5000/products", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  return (
+    <div className="p-8">
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Product Name</th>
+              <th>Products Id</th>
+              <th>Available Quantity</th>
+              <th>Price Per Piece</th>
+              <th>Delete Product</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>{product.name}</td>
+                <td>{product._id}</td>
+                <td>{product.available}</td>
+                <td>${product.price}<span className="text-gray-400">/piece</span></td>
+                <td><label
+                      onClick={() => setDeleteProduct(product)}
+                      for="delete-order-byAdmin-modal"
+                      className="btn btn-sm btn-error ml-2 modal-button"
+                    >
+                      Delete
+                    </label></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {
+          deleteProduct && <DeleteProductModal
+          deleteProduct={deleteProduct}
+          setDeleteProduct={setDeleteProduct}
+          refetch={refetch}
+          ></DeleteProductModal>
+      }
+    </div>
+  );
 };
 
 export default ManageProducts;
