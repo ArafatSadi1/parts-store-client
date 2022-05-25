@@ -20,6 +20,7 @@ import MakeAdmin from "./components/pages/Dashboard/AdminRoute/MakeAdmin";
 import RequiredAdmin from "./components/pages/Required/RequiredAdmin";
 import Blogs from "./components/pages/Blogs/Blogs";
 import MyPortfolio from "./components/pages/MyPortfolio/MyPortfolio";
+import NotFound from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
             }
           ></Route>
         </Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer />
     </div>
