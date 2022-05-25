@@ -18,15 +18,17 @@ import ManageProducts from "./components/pages/Dashboard/AdminRoute/ManageProduc
 import ManageAllOrders from "./components/pages/Dashboard/AdminRoute/ManageAllOrders";
 import MakeAdmin from "./components/pages/Dashboard/AdminRoute/MakeAdmin";
 import RequiredAdmin from "./components/pages/Required/RequiredAdmin";
+import Blogs from "./components/pages/Blogs/Blogs";
 
 function App() {
   return (
     <div>
       <Navbar></Navbar>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/blogs" element={<Blogs/>}></Route>
         <Route
           path="/purchase-product/:id"
           element={
