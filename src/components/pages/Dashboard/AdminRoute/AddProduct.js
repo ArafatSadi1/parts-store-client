@@ -15,50 +15,49 @@ const AddProduct = () => {
   const imageStorageKey = "242a7e72e9896985441314dfce198365";
 
   const onSubmit = async (data) => {
-    setLoading(true)
-      const image = data.image[0];
-      const formData = new FormData();
-      formData.append('image', image);
-      const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-      fetch(url, {
-          method: 'POST',
-          body: formData,
-      })
-      .then(res => res.json())
-      .then(result => {
+    setLoading(true);
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
         const imageUrl = result.data.url;
         const product = {
-            picture: imageUrl,
-            name: data.name,
-            about: data.about,
-            price: data.price,
-            available: data.available,
-            minOrder: data.minOrder
-        }
-        fetch('http://localhost:5000/product', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                authorization : `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify(product),
+          picture: imageUrl,
+          name: data.name,
+          about: data.about,
+          price: data.price,
+          available: data.available,
+          minOrder: data.minOrder,
+        };
+        fetch("https://protected-mountain-80420.herokuapp.com/product", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(product),
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.insertedId){
-                toast.success('Product Added Successful');
-                reset()
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Product Added Successful");
+              reset();
+            } else {
+              toast.error("Product Added Failed");
             }
-            else{
-                toast.error('Product Added Failed');
-            }
-        });
+          });
         setLoading(false);
-      })
+      });
   };
 
-  if(loading){
-      return <Loading></Loading>
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (

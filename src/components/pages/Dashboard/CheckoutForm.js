@@ -16,14 +16,17 @@ const CheckoutForm = ({ order }) => {
 
   const { totalPrice, _id, customerName, customerEmail, productName } = order;
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ totalPrice }),
-    })
+    fetch(
+      "https://protected-mountain-80420.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ totalPrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -70,7 +73,7 @@ const CheckoutForm = ({ order }) => {
       setCardError("");
       setSuccess("Congrats!! Your Payment Is Success");
       setTransactionId(paymentIntent.id);
-      console.log(paymentIntent.id)
+      console.log(paymentIntent.id);
 
       // store payment data on db
       const order = {
@@ -79,7 +82,7 @@ const CheckoutForm = ({ order }) => {
         productName: productName,
         customerName: customerName,
       };
-      fetch(`http://localhost:5000/order/${_id}`, {
+      fetch(`https://protected-mountain-80420.herokuapp.com/order/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -98,7 +101,7 @@ const CheckoutForm = ({ order }) => {
     <>
       <form className="mt-2" onSubmit={handleSubmit}>
         <CardElement
-        className="input input-bordered pt-3"
+          className="input input-bordered pt-3"
           options={{
             style: {
               base: {
@@ -114,7 +117,11 @@ const CheckoutForm = ({ order }) => {
             },
           }}
         />
-        <button className="btn btn-success text-gray-100 mt-4 block mx-auto" type="submit" disabled={!stripe}>
+        <button
+          className="btn btn-success text-gray-100 mt-4 block mx-auto"
+          type="submit"
+          disabled={!stripe}
+        >
           Pay
         </button>
       </form>
@@ -125,9 +132,9 @@ const CheckoutForm = ({ order }) => {
         <div className="text-green-500">
           {success}
           <p>
-            Your Transaction Id Is: 
+            Your Transaction Id Is:
             <span className="text-orange-500 text-center text-sm">
-               { transactionId}
+              {transactionId}
             </span>
           </p>
         </div>

@@ -4,9 +4,13 @@ import Loading from "../../shared/Loading";
 import DeleteProductModal from "./DeleteProductModal";
 
 const ManageProducts = () => {
-    const [deleteProduct, setDeleteProduct] = useState({});
-  const { data: products, isLoading, refetch } = useQuery("manageProducts", () =>
-    fetch("http://localhost:5000/products", {
+  const [deleteProduct, setDeleteProduct] = useState({});
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery("manageProducts", () =>
+    fetch("https://protected-mountain-80420.herokuapp.com/products", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -38,26 +42,31 @@ const ManageProducts = () => {
                 <td>{product.name}</td>
                 <td>{product._id}</td>
                 <td>{product.available}</td>
-                <td>${product.price}<span className="text-gray-400">/piece</span></td>
-                <td><label
-                      onClick={() => setDeleteProduct(product)}
-                      for="delete-order-byAdmin-modal"
-                      className="btn btn-sm btn-error ml-2 modal-button"
-                    >
-                      Delete
-                    </label></td>
+                <td>
+                  ${product.price}
+                  <span className="text-gray-400">/piece</span>
+                </td>
+                <td>
+                  <label
+                    onClick={() => setDeleteProduct(product)}
+                    for="delete-order-byAdmin-modal"
+                    className="btn btn-sm btn-error ml-2 modal-button"
+                  >
+                    Delete
+                  </label>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {
-          deleteProduct && <DeleteProductModal
+      {deleteProduct && (
+        <DeleteProductModal
           deleteProduct={deleteProduct}
           setDeleteProduct={setDeleteProduct}
           refetch={refetch}
-          ></DeleteProductModal>
-      }
+        ></DeleteProductModal>
+      )}
     </div>
   );
 };

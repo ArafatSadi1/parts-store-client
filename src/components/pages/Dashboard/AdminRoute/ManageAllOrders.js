@@ -11,7 +11,7 @@ const ManageAllOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("http://localhost:5000/orders", {
+    fetch("https://protected-mountain-80420.herokuapp.com/orders", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -20,13 +20,16 @@ const ManageAllOrders = () => {
     }).then((res) => res.json())
   );
   const handleShipped = (id) => {
-    fetch(`http://localhost:5000/order/shipped/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://protected-mountain-80420.herokuapp.com/order/shipped/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -92,15 +95,14 @@ const ManageAllOrders = () => {
         </table>
       </div>
       <div>
-            {deleteOrder && (
-              <DeleteOrderByAdminModal
-                refetch={refetch}
-                setDeleteOrder={setDeleteOrder}
-                deleteOrder={deleteOrder}
-              ></DeleteOrderByAdminModal>
-            )}
-          </div>
-
+        {deleteOrder && (
+          <DeleteOrderByAdminModal
+            refetch={refetch}
+            setDeleteOrder={setDeleteOrder}
+            deleteOrder={deleteOrder}
+          ></DeleteOrderByAdminModal>
+        )}
+      </div>
     </div>
   );
 };

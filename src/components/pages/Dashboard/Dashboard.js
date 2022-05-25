@@ -3,13 +3,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Loading from "../shared/Loading";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
   const [user, loading] = useAuthState(auth);
+  const [admin, adminLoading] = useAdmin(user);
   const [dbUser, setDbUser] = useState({});
   useEffect(() => {
     const email = user?.email;
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`https://protected-mountain-80420.herokuapp.com/user/${email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -22,7 +24,7 @@ const Dashboard = () => {
       });
   }, [user]);
 
-  if (loading) {
+  if (loading || adminLoading) {
     return <Loading></Loading>;
   }
 
@@ -50,16 +52,20 @@ const Dashboard = () => {
               </li>
             </>
           )}
-          {dbUser.role === "admin" && (
+          {admin && (
             <>
               <li>
                 <NavLink to="/dashboard/addProduct">Add A Product</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageProducts">Manage All Products</NavLink>
+                <NavLink to="/dashboard/manageProducts">
+                  Manage All Products
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageAllOrders">Manage All Orders</NavLink>
+                <NavLink to="/dashboard/manageAllOrders">
+                  Manage All Orders
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>

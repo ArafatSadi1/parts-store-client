@@ -31,7 +31,7 @@ const PurchaseForm = ({ product }) => {
       customerAddress: address,
       orderQty: quantity,
     };
-    fetch("http://localhost:5000/order", {
+    fetch("https://protected-mountain-80420.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -49,7 +49,7 @@ const PurchaseForm = ({ product }) => {
   };
   const handleQuantity = (event) => {
     const quantity = event.target.value;
-    console.log(event.target.value)
+    console.log(event.target.value);
     if (quantity < minOrder) {
       return setMinOrderErr(
         "Your Order less Than Our Minimum Order Requirement"

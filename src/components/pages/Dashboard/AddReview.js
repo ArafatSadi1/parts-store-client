@@ -26,25 +26,25 @@ const AddReview = () => {
     e.preventDefault();
     const reviewText = e.target.review.value;
     const review = {
-        name: user.displayName,
-        text: reviewText,
-        rating: rating
-    }
-    fetch(`http://localhost:5000/review`, {
-        method: 'POST',
-        headers:{
-            'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-        body: JSON.stringify(review)
+      name: user.displayName,
+      text: reviewText,
+      rating: rating,
+    };
+    fetch(`https://protected-mountain-80420.herokuapp.com/review`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(review),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.insertedId){
-            toast.success('Thanks For Your Compliment');
-            e.target.reset()
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Thanks For Your Compliment");
+          e.target.reset();
         }
-    })
+      });
   };
   return (
     <div className="max-w-xs mx-auto">
@@ -61,11 +61,19 @@ const AddReview = () => {
           placeholder="Enter Your Review"
         ></textarea>
         <div className="pl-2 border border-secondary rounded-xl flex w-44">
-          <button type="button" onClick={handleDecrease} className="btn btn-ghost">
+          <button
+            type="button"
+            onClick={handleDecrease}
+            className="btn btn-ghost"
+          >
             <img width={15} src={minus} alt="" />
           </button>
           <input type="text" value={rating} class="input w-16 text-lg" />
-          <button type="button" onClick={handleIncrease} className="btn btn-ghost">
+          <button
+            type="button"
+            onClick={handleIncrease}
+            className="btn btn-ghost"
+          >
             <img width={15} src={plus} alt="" />
           </button>
         </div>

@@ -14,14 +14,17 @@ const ProfileUpdate = ({ email }) => {
       phone: phone,
       linkedIn: linkedIn,
     };
-    fetch(`http://localhost:5000/updateUser/${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(updateProfile),
-    })
+    fetch(
+      `https://protected-mountain-80420.herokuapp.com/updateUser/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(updateProfile),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Profile Updated");

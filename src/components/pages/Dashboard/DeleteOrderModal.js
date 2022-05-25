@@ -4,20 +4,20 @@ import { toast } from "react-toastify";
 const DeleteOrderModal = ({ deleteOrder, setDeleteOrder, refetch }) => {
   const { productName, _id } = deleteOrder;
   const handleDeleteOrder = () => {
-    fetch(`http://localhost:5000/order/${_id}`, {
+    fetch(`https://protected-mountain-80420.herokuapp.com/order/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.deletedCount){
-            toast('Your Order Delete');
-            setDeleteOrder(null);
-            refetch()
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          toast("Your Order Delete");
+          setDeleteOrder(null);
+          refetch();
         }
-    })
+      });
   };
   return (
     <div>

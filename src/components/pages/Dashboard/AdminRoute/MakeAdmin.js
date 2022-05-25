@@ -7,9 +7,13 @@ import { signOut } from "firebase/auth";
 import auth from "../../../../firebase.init";
 
 const MakeAdmin = () => {
-  const navigate = useNavigate()
-  const { data: users, isLoading, refetch } = useQuery("users", () =>
-    fetch("http://localhost:5000/users", {
+  const navigate = useNavigate();
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch("https://protected-mountain-80420.herokuapp.com/users", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -21,14 +25,17 @@ const MakeAdmin = () => {
     return <Loading></Loading>;
   }
   const handleMakeAdmin = (email) => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-    .then(res => {
+    fetch(
+      `https://protected-mountain-80420.herokuapp.com/user/admin/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+      .then((res) => {
         if (res.status === 403) {
           toast.error("Failed to Add New Admin");
         }
