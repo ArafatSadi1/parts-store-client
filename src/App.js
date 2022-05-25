@@ -19,6 +19,7 @@ import ManageAllOrders from "./components/pages/Dashboard/AdminRoute/ManageAllOr
 import MakeAdmin from "./components/pages/Dashboard/AdminRoute/MakeAdmin";
 import RequiredAdmin from "./components/pages/Required/RequiredAdmin";
 import Blogs from "./components/pages/Blogs/Blogs";
+import MyPortfolio from "./components/pages/MyPortfolio/MyPortfolio";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/blogs" element={<Blogs/>}></Route>
+        <Route path="/myPortfolio" element={<MyPortfolio/>}></Route>
         <Route
           path="/purchase-product/:id"
           element={

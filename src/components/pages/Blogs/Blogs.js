@@ -3,10 +3,10 @@ import codeExmaple from "../../../assets/search.PNG";
 
 const Blogs = () => {
   return (
-    <div className="flex flex-col gap-4 my-8">
-      <div className="card p-6 m-6 rounded-xl shadow-xl">
-        <h2 className="text-2xl text-center font-bold text-neutral my-4">How will you improve the performance of a React Application?</h2>
-        <p>
+    <div className="flex flex-col gap-4 py-8 bg-pink-50">
+      <div className="card p-6 m-6 rounded-xl shadow-xl bg-base-100">
+        <h2 className="text-4xl text-center font-bold text-neutral my-4">How will you improve the performance of a React Application?</h2>
+        <p className="text-lg">
           1. Keeping component state local where necessary We've to ensure
           re-rendering a component only happens when necessary, we can extract
           the part of code that cares about the component state, making it local
@@ -34,11 +34,11 @@ const Blogs = () => {
           list.
         </p>
       </div>
-      <div className="card p-6 m-6 rounded-xl shadow-xl">
-        <h2 className="text-2xl text-center font-bold text-neutral my-4">
+      <div className="card p-6 m-6 rounded-xl shadow-xl bg-base-100">
+        <h2 className="text-4xl text-center font-bold text-neutral my-4">
           What are the different ways to manage a state in a React application?
         </h2>
-        <p>
+        <p className="text-lg">
           1. Local state For example, local state would be needed to show or
           hide a modal component or to track values for a form component, such
           as form submission, when the form is disabled and the values of a
@@ -65,9 +65,9 @@ const Blogs = () => {
           that is located in the URL!
         </p>
       </div>
-      <div className="card p-6 m-6 rounded-xl shadow-xl">
-        <h2 className="text-2xl text-center font-bold text-neutral my-4">How does prototypical inheritance work?</h2>
-        <p>
+      <div className="card p-6 m-6 rounded-xl shadow-xl bg-base-100">
+        <h2 className="text-4xl text-center font-bold text-neutral my-4">How does prototypical inheritance work?</h2>
+        <p className="text-lg">
           JavaScript is a prototype-based, Object Oriented programming language.
           After the ES6 updates, JavaScript allowed for “prototypal
           inheritance”, meaning that objects and methods can be shared,
@@ -85,9 +85,9 @@ const Blogs = () => {
           objects, and Player objects all inherit from Object.prototype.
         </p>
       </div>
-      <div className="card p-6 m-6 rounded-xl shadow-xl">
-        <h2 className="text-2xl text-center font-bold text-neutral my-4">What is a unit test? Why should write unit tests?</h2>
-        <p>
+      <div className="card p-6 m-6 rounded-xl shadow-xl bg-base-100">
+        <h2 className="text-4xl text-center font-bold text-neutral my-4">What is a unit test? Why should write unit tests?</h2>
+        <p className="text-lg">
           Definaiton of unit testing: Unit testing involves testing individual
           components of the software program or application. The main purpose
           behind this is to check that all the individual parts are working as
@@ -109,13 +109,13 @@ const Blogs = () => {
           issues first before progressing any further.
         </p>
       </div>
-      <div className=" p-6 m-6 rounded-xl shadow-xl">
-        <h2 className="text-2xl text-center font-bold text-neutral my-4">
+      <div className="card p-6 m-6 rounded-xl shadow-xl bg-base-100">
+        <h2 className="text-4xl text-center font-bold text-neutral my-4">
           You have an array of products. Each product has a name, price,
           description, etc. How will you implement a search to find products by
           name?
         </h2>
-        <p>
+        <p className="text-lg">
           we have to use find() method to find specific product from an array of
           object. suppose, we have an array(products) of object. Each
           object(product) has name, price, description, etc. if we run find()
