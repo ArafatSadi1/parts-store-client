@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import Loading from "../../shared/Loading";
@@ -49,7 +49,6 @@ const PurchaseForm = ({ product }) => {
   };
   const handleQuantity = (event) => {
     const quantity = event.target.value;
-    console.log(event.target.value);
     if (quantity < minOrder) {
       return setMinOrderErr(
         "Your Order less Than Our Minimum Order Requirement"

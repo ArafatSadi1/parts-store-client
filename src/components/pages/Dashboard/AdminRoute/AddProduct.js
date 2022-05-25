@@ -16,6 +16,9 @@ const AddProduct = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
+    const price = parseInt(data.price);
+    const available = parseInt(data.available);
+    const minOrder = parseInt(data.minOrder);
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -31,9 +34,9 @@ const AddProduct = () => {
           picture: imageUrl,
           name: data.name,
           about: data.about,
-          price: data.price,
-          available: data.available,
-          minOrder: data.minOrder,
+          price: price,
+          available: available,
+          minOrder: minOrder,
         };
         fetch("https://protected-mountain-80420.herokuapp.com/product", {
           method: "POST",
