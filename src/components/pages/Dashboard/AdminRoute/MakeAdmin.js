@@ -1,13 +1,9 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../../shared/Loading";
-import { signOut } from "firebase/auth";
-import auth from "../../../../firebase.init";
 
 const MakeAdmin = () => {
-  const navigate = useNavigate();
   const {
     data: users,
     isLoading,
