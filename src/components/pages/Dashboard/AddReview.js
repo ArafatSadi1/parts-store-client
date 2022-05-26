@@ -30,7 +30,7 @@ const AddReview = () => {
       text: reviewText,
       rating: rating,
     };
-    fetch(`https://protected-mountain-80420.herokuapp.com/review`, {
+    fetch(`http://localhost:5000/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -53,11 +53,11 @@ const AddReview = () => {
           type="text"
           value={user.displayName}
           readOnly
-          class="input input-bordered border-secondary w-full"
+          className="input input-bordered border-secondary w-full"
         />
         <textarea
           name="review"
-          class="textarea textarea-bordered border-secondary w-full"
+          className="textarea textarea-bordered border-secondary w-full"
           placeholder="Enter Your Review"
         ></textarea>
         <div className="pl-2 border border-secondary rounded-xl flex w-44">
@@ -68,7 +68,7 @@ const AddReview = () => {
           >
             <img width={15} src={minus} alt="" />
           </button>
-          <input type="text" value={rating} class="input w-16 text-lg" />
+          <input type="text" value={rating} className="input w-16 text-lg" />
           <button
             type="button"
             onClick={handleIncrease}

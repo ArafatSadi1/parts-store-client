@@ -38,7 +38,7 @@ const AddProduct = () => {
           available: available,
           minOrder: minOrder,
         };
-        fetch("https://protected-mountain-80420.herokuapp.com/product", {
+        fetch("http://localhost:5000/product", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -65,12 +65,12 @@ const AddProduct = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-4/5 mx-auto">
-      <h2 className="text-2xl font-semibold text-center mb-4">Add A Product</h2>
+      <h2 className="text-2xl font-semibold text-center my-4">Add A Product</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <input
             type="file"
-            class="input input-bordered border-secondary w-full pt-2"
+            className="input input-bordered border-secondary w-full pt-2"
             {...register("image", {
               required: {
                 value: true,
@@ -90,7 +90,7 @@ const AddProduct = () => {
           <input
             type="text"
             placeholder="Product Name"
-            class="input input-bordered border-secondary w-full"
+            className="input input-bordered border-secondary w-full"
             {...register("name", {
               required: {
                 value: true,
@@ -109,7 +109,7 @@ const AddProduct = () => {
         <div>
           <textarea
             type="text"
-            class="textarea input-bordered border-secondary w-full"
+            className="textarea input-bordered border-secondary w-full"
             placeholder="Product Description"
             {...register("about", {
               required: {
@@ -130,7 +130,7 @@ const AddProduct = () => {
           <input
             type="number"
             placeholder="Price"
-            class="input input-bordered border-secondary w-full"
+            className="input input-bordered border-secondary w-full"
             {...register("price", {
               required: {
                 value: true,
@@ -151,7 +151,7 @@ const AddProduct = () => {
             <input
               type="number"
               placeholder="Available Quantity"
-              class="input input-bordered border-secondary"
+              className="input input-bordered border-secondary"
               {...register("available", {
                 required: {
                   value: true,
@@ -171,7 +171,7 @@ const AddProduct = () => {
             <input
               type="number"
               placeholder="Minimum Order Quantity"
-              class="input input-bordered border-secondary"
+              className="input input-bordered border-secondary"
               {...register("minOrder", {
                 required: {
                   value: true,
@@ -188,7 +188,7 @@ const AddProduct = () => {
             </label>
           </div>
         </div>
-        <input type="submit" class="btn w-full" value="Add Product" />
+        <input type="submit" className="btn w-full" value="Add Product" />
       </form>
     </div>
   );

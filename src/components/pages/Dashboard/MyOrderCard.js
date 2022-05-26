@@ -13,10 +13,10 @@ const MyOrderCard = ({ order, setDeleteOrder, deleteOrder, refetch }) => {
     transactionId,
   } = order;
   return (
-    <div class="card lg:card-side bg-base-100 shadow-xl">
+    <div className="card lg:card-side bg-base-100 shadow-xl">
       <img className="lg:w-48" src={picture} alt="order" />
-      <div class="card-body">
-        <h2 class="card-title">{productName}</h2>
+      <div className="card-body">
+        <h2 className="card-title">{productName}</h2>
         <div>
           <p>
             Quantity: {orderQty}
@@ -24,10 +24,13 @@ const MyOrderCard = ({ order, setDeleteOrder, deleteOrder, refetch }) => {
           </p>
           <p>Total Price: ${totalPrice}</p>
           {transactionId && (
-            <p className="mb-2 break-words">Transaction Id: <span className="text-secondary">{transactionId}</span></p>
+            <p className="mb-2 break-words">
+              Transaction Id:
+              <span className="text-secondary"> {transactionId}</span>
+            </p>
           )}
         </div>
-        <div class="card-actions justify-end">
+        <div className="card-actions justify-end">
           {paid ? (
             <button className="btn btn-success text-green-100">paid</button>
           ) : (
@@ -41,8 +44,8 @@ const MyOrderCard = ({ order, setDeleteOrder, deleteOrder, refetch }) => {
 
               <label
                 onClick={() => setDeleteOrder(order)}
-                for="delete-modal"
-                class="btn modal-button ml-2"
+                htmlFor="delete-modal"
+                className="btn modal-button ml-2"
               >
                 Delete
               </label>

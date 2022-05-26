@@ -14,17 +14,14 @@ const ProfileUpdate = ({ email }) => {
       phone: phone,
       linkedIn: linkedIn,
     };
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/updateUser/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(updateProfile),
-      }
-    )
+    fetch(`http://localhost:5000/updateUser/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(updateProfile),
+    })
       .then((res) => res.json())
       .then((data) => {
         toast.success("Profile Updated");
@@ -45,28 +42,28 @@ const ProfileUpdate = ({ email }) => {
           type="text"
           name="education"
           placeholder="Education"
-          class="input input-bordered w-3/4"
+          className="input input-bordered border-secondary w-3/4"
           required
         />
         <input
           type="text"
           name="address"
           placeholder="Your Address"
-          class="input input-bordered w-3/4"
+          className="input input-bordered border-secondary w-3/4"
           required
         />
         <input
           type="text"
           name="phone"
           placeholder="Phone number"
-          class="input input-bordered w-3/4"
+          className="input input-bordered border-secondary w-3/4"
           required
         />
         <input
           type="text"
           name="linkedIn"
-          placeholder="Your LinkedIn Link"
-          class="input input-bordered w-3/4"
+          placeholder="Your LinkedIn Profile Link"
+          className="input input-bordered border-secondary w-3/4"
           required
         />
         <input type="submit" value="Update" className="btn btn-primary w-3/4" />

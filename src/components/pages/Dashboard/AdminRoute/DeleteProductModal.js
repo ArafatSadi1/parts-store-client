@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const DeleteProductModal = ({ deleteProduct, setDeleteProduct, refetch }) => {
   const { name, _id } = deleteProduct;
   const handleDeleteProduct = () => {
-    fetch(`https://protected-mountain-80420.herokuapp.com/product/${_id}`, {
+    fetch(`http://localhost:5000/product/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -24,20 +24,20 @@ const DeleteProductModal = ({ deleteProduct, setDeleteProduct, refetch }) => {
       <input
         type="checkbox"
         id="delete-order-byAdmin-modal"
-        class="modal-toggle"
+        className="modal-toggle"
       />
-      <div class="modal">
-        <div class="modal-box">
-          <h3 class="font-bold text-2xl">Are you sure?</h3>
-          <p class="py-4">
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-2xl">Are you sure?</h3>
+          <p className="py-4">
             you want to delete
             <span className="text-secondary"> {name}</span>!!!
           </p>
-          <div class="modal-action">
+          <div className="modal-action">
             <button onClick={handleDeleteProduct} className="btn btn-error">
               Delete
             </button>
-            <label for="delete-order-byAdmin-modal" class="btn">
+            <label htmlFor="delete-order-byAdmin-modal" className="btn">
               Cancel
             </label>
           </div>

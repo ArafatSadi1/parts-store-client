@@ -31,7 +31,7 @@ const PurchaseForm = ({ product }) => {
       customerAddress: address,
       orderQty: quantity,
     };
-    fetch("https://protected-mountain-80420.herokuapp.com/order", {
+    fetch("http://localhost:5000/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -69,42 +69,43 @@ const PurchaseForm = ({ product }) => {
             type="text"
             readOnly
             value={user?.displayName}
-            class="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-secondary max-w-xs w-full mt-2"
             required
           />
           <input
             type="text"
             readOnly
             value={user?.email}
-            class="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-secondary max-w-xs w-full mt-2"
           />
         </div>
 
+        <div className="flex flex-col lg:flex-row gap-2">
+          <input
+            type="text"
+            name="address"
+            placeholder="Your Address"
+            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            required
+          />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            required
+          />
+        </div>
         <div className="flex flex-col lg:flex-row gap-2">
           <input
             type="number"
             onChange={handleQuantity}
             name="quantity"
             placeholder="Your Quantity"
-            class="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-secondary max-w-xs w-full mt-2"
             required
           />
-          <input
-            type="text"
-            name="address"
-            placeholder="Your Address"
-            class="input input-bordered border-secondary max-w-xs w-full mt-2"
-            required
-          />
-        </div>
-        <div className="flex flex-col lg:flex-row gap-2">
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number"
-            class="input input-bordered border-secondary max-w-xs w-full mt-2"
-            required
-          />
+
           <input
             type="submit"
             disabled={minOrderErr || maxOrderErr}

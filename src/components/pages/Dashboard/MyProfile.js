@@ -8,9 +8,7 @@ const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const [dbUser, setDbUser] = useState({});
   useEffect(() => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/user/${user.email}`
-    ).then((res) =>
+    fetch(`http://localhost:5000/user/${user.email}`).then((res) =>
       res.json().then((data) => {
         setDbUser(data);
       })
@@ -22,9 +20,9 @@ const MyProfile = () => {
   }
   return (
     <div className="max-w m-8 flex lg:flex-row flex-col justify-center items-center gap-6">
-      <div class="card w-full lg:w-1/2 bg-base-100 shadow-xl mx-auto">
-        <div class="card-body">
-          <h2 class="card-title">Name: {user.displayName}</h2>
+      <div className="card w-full lg:w-1/2 bg-base-100 shadow-xl mx-auto">
+        <div className="card-body">
+          <h2 className="card-title">Name: {user.displayName}</h2>
           <div>
             <p>
               <span className="font-semibold">Email:</span> {user.email}

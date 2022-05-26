@@ -16,7 +16,7 @@ const Payment = () => {
   const { orderId } = useParams();
   const [user, loading] = useAuthState(auth);
   const { data: order, isLoading } = useQuery("payment", () =>
-    fetch(`https://protected-mountain-80420.herokuapp.com/payment/${orderId}`, {
+    fetch(`http://localhost:5000/payment/${orderId}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -33,19 +33,19 @@ const Payment = () => {
         <input
           type="text"
           value={user.displayName}
-          class="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs"
         />
         <input
           type="email"
           value={user.email}
           readOnly
-          class="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs"
         />
         <input
           type="email"
           value={order?.productName}
           readOnly
-          class="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs"
         />
       </div>
       <div className="max-w-xs mx-auto mt-2">

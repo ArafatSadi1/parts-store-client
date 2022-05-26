@@ -10,7 +10,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("manageProducts", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/products", {
+    fetch("http://localhost:5000/products", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -23,8 +23,8 @@ const ManageProducts = () => {
   }
   return (
     <div className="p-8">
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -37,7 +37,7 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {products.map((product, index) => (
-              <tr>
+              <tr key={product._id}>
                 <th>{index + 1}</th>
                 <td>{product.name}</td>
                 <td>{product._id}</td>
@@ -49,7 +49,7 @@ const ManageProducts = () => {
                 <td>
                   <label
                     onClick={() => setDeleteProduct(product)}
-                    for="delete-order-byAdmin-modal"
+                    htmlFor="delete-order-byAdmin-modal"
                     className="btn btn-sm btn-error ml-2 modal-button"
                   >
                     Delete

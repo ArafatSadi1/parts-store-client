@@ -5,6 +5,7 @@ import {
   CardElement,
   Elements,
 } from "@stripe/react-stripe-js";
+import { toast } from "react-toastify";
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -16,17 +17,14 @@ const CheckoutForm = ({ order }) => {
 
   const { totalPrice, _id, customerName, customerEmail, productName } = order;
   useEffect(() => {
-    fetch(
-      "https://protected-mountain-80420.herokuapp.com/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({ totalPrice }),
-      }
-    )
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ totalPrice }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -41,13 +39,10 @@ const CheckoutForm = ({ order }) => {
     if (!stripe || !elements) {
       return;
     }
-
     const card = elements.getElement(CardElement);
-
     if (card == null) {
       return;
     }
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -82,7 +77,7 @@ const CheckoutForm = ({ order }) => {
         productName: productName,
         customerName: customerName,
       };
-      fetch(`https://protected-mountain-80420.herokuapp.com/order/${_id}`, {
+      fetch(`http://localhost:5000/order/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -92,10 +87,14 @@ const CheckoutForm = ({ order }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          if (data.modifiedCount > 0) {
+            toast.success("Payment Success");
+            event.target.reset();
+          }
         });
     }
   };
+
 
   return (
     <>

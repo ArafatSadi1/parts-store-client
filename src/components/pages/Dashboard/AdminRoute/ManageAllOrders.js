@@ -11,7 +11,7 @@ const ManageAllOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/orders", {
+    fetch("http://localhost:5000/orders", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -20,16 +20,13 @@ const ManageAllOrders = () => {
     }).then((res) => res.json())
   );
   const handleShipped = (id) => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/order/shipped/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:5000/order/shipped/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -44,8 +41,8 @@ const ManageAllOrders = () => {
   }
   return (
     <div className="p-8">
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -82,7 +79,7 @@ const ManageAllOrders = () => {
                     <button className="btn btn-sm">Unpaid</button>
                     <label
                       onClick={() => setDeleteOrder(order)}
-                      for="delete-order-byAdmin-modal"
+                      htmlFor="delete-order-byAdmin-modal"
                       className="btn btn-sm btn-error ml-2 modal-button"
                     >
                       Delete

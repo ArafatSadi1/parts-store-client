@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -25,16 +25,13 @@ const MakeAdmin = () => {
     return <Loading></Loading>;
   }
   const handleMakeAdmin = (email) => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/user/admin/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:5000/user/admin/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => {
         if (res.status === 403) {
           toast.error("Failed to Add New Admin");
@@ -49,8 +46,8 @@ const MakeAdmin = () => {
       });
   };
   return (
-    <div class="w-5/6 my-8 lg:w-3/4 mx-auto">
-      <table class="table w-full">
+    <div className="w-5/6 my-8 lg:w-3/4 mx-auto">
+      <table className="table w-full">
         <thead>
           <tr>
             <th></th>

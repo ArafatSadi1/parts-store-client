@@ -3,15 +3,23 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import google from "../../../assets/icons/Group 573.png";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle,  useUpdateProfile } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import Loading from "../shared/Loading";
 import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
-  const [createUserWithEmailAndPassword, signupUser, signupLoading, signupError] =
-    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [signInWithGoogle, GUser, GLoading, GError] = useSignInWithGoogle(auth);
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [
+    createUserWithEmailAndPassword,
+    signupUser,
+    signupLoading,
+    signupError,
+  ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [signInWithGoogle, GUser, GLoading, GError] = useSignInWithGoogle(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   const [passMatchError, setPassMatchError] = useState("");
   const {
@@ -21,30 +29,30 @@ const SignUp = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const [token] = useToken(signupUser || GUser)
+  const [token] = useToken(signupUser || GUser);
 
-  if(GLoading || signupLoading || updating){
+  if (GLoading || signupLoading || updating) {
     return <Loading></Loading>;
   }
 
-  if(token){
-      navigate('/')
+  if (token) {
+    navigate("/");
   }
   const onSubmit = async (data) => {
     if (data.password === data.confirmPass) {
-      await createUserWithEmailAndPassword(data.email, data.password)
-      await updateProfile({displayName: data.name})
+      await createUserWithEmailAndPassword(data.email, data.password);
+      await updateProfile({ displayName: data.name });
     } else {
       setPassMatchError("Your Password Don't match");
     }
   };
   return (
     <div className="my-12 grid justify-center items-center">
-      <div className="w-screen max-w-md bg-base-100 border border-slate-600 rounded p-8">
+      <div className="max-w-md bg-base-100 border border-slate-600 rounded p-8">
         <h2 className="text-2xl font-bold mb-8">Create an account</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="form-control">
           <input
-            class="input input-bordered"
+            className="input input-bordered"
             placeholder="your Name"
             {...register("name", {
               required: {
@@ -53,7 +61,7 @@ const SignUp = () => {
               },
             })}
           />
-          <label class="label">
+          <label className="label">
             {errors?.name?.type === "required" && (
               <span className="label-text-alt text-error">
                 {errors.name.message}
@@ -61,9 +69,8 @@ const SignUp = () => {
             )}
           </label>
 
-
           <input
-            class="input input-bordered"
+            className="input input-bordered"
             type="email"
             placeholder="Email"
             {...register("email", {
@@ -77,7 +84,7 @@ const SignUp = () => {
               },
             })}
           />
-          <label class="label">
+          <label className="label">
             {errors?.email?.type === "required" && (
               <span className="label-text-alt text-error">
                 {errors.email.message}
@@ -91,7 +98,7 @@ const SignUp = () => {
           </label>
 
           <input
-            class="input input-bordered"
+            className="input input-bordered"
             placeholder="Password"
             type="password"
             {...register("password", {
@@ -105,7 +112,7 @@ const SignUp = () => {
               },
             })}
           />
-          <label class="label">
+          <label className="label">
             {errors?.password?.type === "required" && (
               <span className="label-text-alt text-error">
                 {errors.password.message}
@@ -119,7 +126,7 @@ const SignUp = () => {
           </label>
 
           <input
-            class="input input-bordered"
+            className="input input-bordered"
             placeholder="Confirm Password"
             type="password"
             {...register("confirmPass", {
@@ -133,7 +140,7 @@ const SignUp = () => {
               },
             })}
           />
-          <label class="label">
+          <label className="label">
             {errors?.confirmPass?.type === "required" && (
               <span className="label-text-alt text-error">
                 {errors.confirmPass.message}
@@ -165,11 +172,14 @@ const SignUp = () => {
           </p>
         </form>
       </div>
-      <div class="divider">OR</div>
+      <div className="divider">OR</div>
       <p className="text-error text-sm">{GError?.message}</p>
-      <button onClick={()=>signInWithGoogle()} class="btn btn-outline rounded-full pr-32">
-        <img className="mr-24" width={30} src={google} alt="" /> Continue With
-        Google
+      <button
+        onClick={() => signInWithGoogle()}
+        className="btn btn-outline rounded-full pr-24 lg:pr-32"
+      >
+        <img className="mr-16 lg:mr-24" width={30} src={google} alt="" />{" "}
+        Continue With Google
       </button>
     </div>
   );
