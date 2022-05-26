@@ -1,12 +1,12 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "./Loading";
 import { signOut } from "firebase/auth";
 
 const Navbar = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   if (loading) {
     return <Loading></Loading>;
   }
@@ -34,12 +34,15 @@ const Navbar = () => {
         </li>
       )}
       {user ? (
-        <button
-          onClick={handleSignOut}
-          className="btn btn-secondary text-gray-200 mt-2 lg:mt-0"
-        >
-          Sign Out
-        </button>
+        <>
+          <button
+            onClick={handleSignOut}
+            className="btn btn-secondary text-gray-200 mt-2 lg:mt-0"
+          >
+          <span className="pr-1 text-pink-100">({user.displayName})</span>
+            Sign Out
+          </button>
+        </>
       ) : (
         <li>
           <NavLink to="/login">Log in</NavLink>
