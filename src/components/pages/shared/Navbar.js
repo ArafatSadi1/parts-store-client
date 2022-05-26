@@ -36,7 +36,7 @@ const Navbar = () => {
       {user ? (
         <button
           onClick={handleSignOut}
-          className="btn btn-secondary text-gray-200"
+          className="btn btn-secondary text-gray-200 mt-2 lg:mt-0"
         >
           Sign Out
         </button>
