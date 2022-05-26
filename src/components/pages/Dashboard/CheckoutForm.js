@@ -17,14 +17,17 @@ const CheckoutForm = ({ order }) => {
 
   const { totalPrice, _id, customerName, customerEmail, productName } = order;
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ totalPrice }),
-    })
+    fetch(
+      "https://protected-mountain-80420.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ totalPrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -77,7 +80,7 @@ const CheckoutForm = ({ order }) => {
         productName: productName,
         customerName: customerName,
       };
-      fetch(`http://localhost:5000/order/${_id}`, {
+      fetch(`https://protected-mountain-80420.herokuapp.com/order/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -94,7 +97,6 @@ const CheckoutForm = ({ order }) => {
         });
     }
   };
-
 
   return (
     <>

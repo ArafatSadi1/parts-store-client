@@ -16,7 +16,7 @@ const Payment = () => {
   const { orderId } = useParams();
   const [user, loading] = useAuthState(auth);
   const { data: order, isLoading } = useQuery("payment", () =>
-    fetch(`http://localhost:5000/payment/${orderId}`, {
+    fetch(`https://protected-mountain-80420.herokuapp.com/payment/${orderId}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

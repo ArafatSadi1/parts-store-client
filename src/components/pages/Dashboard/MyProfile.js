@@ -8,7 +8,9 @@ const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const [dbUser, setDbUser] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`).then((res) =>
+    fetch(
+      `https://protected-mountain-80420.herokuapp.com/user/${user.email}`
+    ).then((res) =>
       res.json().then((data) => {
         setDbUser(data);
       })
