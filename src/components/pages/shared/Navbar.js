@@ -72,7 +72,7 @@ const Navbar = () => {
         </svg>
       </label>
       <div className="navbar-start w-20">
-        <Link to="/" className="normal-case text-2xl">
+        <Link to="/" className="normal-case text-2xl font-semibold">
           Parts<span className="text-secondary">Store</span>
         </Link>
       </div>
