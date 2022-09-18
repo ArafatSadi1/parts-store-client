@@ -24,7 +24,7 @@ import NotFound from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
-    <div>
+    <div className="max-w-[1300px] mx-auto">
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
