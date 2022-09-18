@@ -24,71 +24,73 @@ import NotFound from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
-    <div className="max-w-[1300px] mx-auto">
-      <Navbar></Navbar>
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/signup" element={<SignUp/>}></Route>
-        <Route path="/blogs" element={<Blogs/>}></Route>
-        <Route path="/myPortfolio" element={<MyPortfolio/>}></Route>
-        <Route
-          path="/purchase-product/:id"
-          element={
-            <RequiredAuth>
-              <PurchaseProduct />
-            </RequiredAuth>
-          }
-        ></Route>
-        <Route
-          path="/dashboard"
-          element={
-            <RequiredAuth>
-              <Dashboard />
-            </RequiredAuth>
-          }
-        >
-          <Route path="myProfile" element={<MyProfile />}></Route>
-          <Route path="myOrders" element={<MyOrders />}></Route>
-          <Route path="payment/:orderId" element={<Payment />}></Route>
-          <Route path="addReview" element={<AddReview />}></Route>
+    <div className="bg-slate-100">
+      <div className="max-w-[1300px] mx-auto">
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/blogs" element={<Blogs />}></Route>
+          <Route path="/myPortfolio" element={<MyPortfolio />}></Route>
+          <Route
+            path="/purchase-product/:id"
+            element={
+              <RequiredAuth>
+                <PurchaseProduct />
+              </RequiredAuth>
+            }
+          ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <RequiredAuth>
+                <Dashboard />
+              </RequiredAuth>
+            }
+          >
+            <Route path="myProfile" element={<MyProfile />}></Route>
+            <Route path="myOrders" element={<MyOrders />}></Route>
+            <Route path="payment/:orderId" element={<Payment />}></Route>
+            <Route path="addReview" element={<AddReview />}></Route>
 
-          <Route
-            path="addProduct"
-            element={
-              <RequiredAdmin>
-                <AddProduct />
-              </RequiredAdmin>
-            }
-          ></Route>
-          <Route
-            path="manageProducts"
-            element={
-              <RequiredAdmin>
-                <ManageProducts />
-              </RequiredAdmin>
-            }
-          ></Route>
-          <Route
-            path="manageAllOrders"
-            element={
-              <RequiredAdmin>
-                <ManageAllOrders />
-              </RequiredAdmin>
-            }
-          ></Route>
-          <Route
-            path="makeAdmin"
-            element={
-              <RequiredAdmin>
-                <MakeAdmin />
-              </RequiredAdmin>
-            }
-          ></Route>
-        </Route>
-        <Route path="*" element={<NotFound></NotFound>}></Route>
-      </Routes>
-      <ToastContainer />
+            <Route
+              path="addProduct"
+              element={
+                <RequiredAdmin>
+                  <AddProduct />
+                </RequiredAdmin>
+              }
+            ></Route>
+            <Route
+              path="manageProducts"
+              element={
+                <RequiredAdmin>
+                  <ManageProducts />
+                </RequiredAdmin>
+              }
+            ></Route>
+            <Route
+              path="manageAllOrders"
+              element={
+                <RequiredAdmin>
+                  <ManageAllOrders />
+                </RequiredAdmin>
+              }
+            ></Route>
+            <Route
+              path="makeAdmin"
+              element={
+                <RequiredAdmin>
+                  <MakeAdmin />
+                </RequiredAdmin>
+              }
+            ></Route>
+          </Route>
+          <Route path="*" element={<NotFound></NotFound>}></Route>
+        </Routes>
+        <ToastContainer />
+      </div>
     </div>
   );
 }
