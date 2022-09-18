@@ -7,7 +7,7 @@ const Loading = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <CircleLoader color={"#FF7300"} loading={loading} size={50} />
+      <CircleLoader color={"#057AFF"} loading={loading} size={50} />
     </div>
   );
 };

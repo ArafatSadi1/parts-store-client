@@ -17,35 +17,34 @@ const Navbar = () => {
   const navbarItems = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink className="font-semibold" to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/contactUs">Contact Us</NavLink>
+        <NavLink className="font-semibold" to="/contactUs">Contact Us</NavLink>
       </li>
       <li>
-        <NavLink to="/blogs">Blogs</NavLink>
+        <NavLink className="font-semibold" to="/blogs">Blogs</NavLink>
       </li>
       <li>
-        <NavLink to="/myPortfolio">My Portfolio</NavLink>
+        <NavLink className="font-semibold" to="/myPortfolio">My Portfolio</NavLink>
       </li>
       {user && (
         <li>
-          <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
+          <NavLink className="font-semibold" to="/dashboard/myProfile">Dashboard</NavLink>
         </li>
       )}
       {user ? (
         <>
           <button
             onClick={handleSignOut}
-            className="btn btn-secondary text-gray-200 mt-2 lg:mt-0"
+            className="btn btn-outline mt-2 lg:mt-0"
           >
-          <span className="pr-1 text-pink-100">({user.displayName})</span>
             Sign Out
           </button>
         </>
       ) : (
         <li>
-          <NavLink to="/login">Log in</NavLink>
+          <NavLink className="font-semibold" to="/login">Log in</NavLink>
         </li>
       )}
     </>

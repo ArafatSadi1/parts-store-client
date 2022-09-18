@@ -59,6 +59,7 @@ const Login = () => {
             type="email"
             name="email"
             placeholder="Email"
+            defaultValue="admin@gmail.com"
             required
           />
 
@@ -67,6 +68,7 @@ const Login = () => {
             placeholder="Password"
             type="password"
             name="password"
+            defaultValue="123456"
             required
           />
           <p className="text-blue-500 mb-4 text-sm">
