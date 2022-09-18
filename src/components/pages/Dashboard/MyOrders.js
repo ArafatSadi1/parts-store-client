@@ -13,9 +13,9 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/order/${user?.email}`
-    ).then((res) => res.json())
+    fetch(`https://parts-store.onrender.com/order/${user?.email}`).then((res) =>
+      res.json()
+    )
   );
   if (isLoading || loading) {
     return <Loading></Loading>;

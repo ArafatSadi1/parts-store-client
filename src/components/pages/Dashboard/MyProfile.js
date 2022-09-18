@@ -8,9 +8,7 @@ const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const [dbUser, setDbUser] = useState({});
   useEffect(() => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/user/${user.email}`
-    ).then((res) =>
+    fetch(`https://parts-store.onrender.com/user/${user.email}`).then((res) =>
       res.json().then((data) => {
         setDbUser(data);
       })

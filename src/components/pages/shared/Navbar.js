@@ -50,7 +50,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-slate-100 sticky top-0 z-50 px-4 lg:px-12">
+    <div className="navbar bg-slate-100 sticky top-0 z-50 px-4 lg:px-12 shadow-xl">
       <label
         htmlFor="dashboard-sidebar"
         className="btn btn-ghost drawer-button mr-2 lg:hidden"

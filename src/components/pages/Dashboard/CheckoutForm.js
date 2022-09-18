@@ -17,17 +17,14 @@ const CheckoutForm = ({ order }) => {
 
   const { totalPrice, _id, customerName, customerEmail, productName } = order;
   useEffect(() => {
-    fetch(
-      "https://protected-mountain-80420.herokuapp.com/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({ totalPrice }),
-      }
-    )
+    fetch("https://parts-store.onrender.com/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ totalPrice }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -71,7 +68,6 @@ const CheckoutForm = ({ order }) => {
       setCardError("");
       setSuccess("Congrats!! Your Payment Is Success");
       setTransactionId(paymentIntent.id);
-      console.log(paymentIntent.id);
 
       // store payment data on db
       const order = {
@@ -80,7 +76,7 @@ const CheckoutForm = ({ order }) => {
         productName: productName,
         customerName: customerName,
       };
-      fetch(`https://protected-mountain-80420.herokuapp.com/order/${_id}`, {
+      fetch(`https://parts-store.onrender.com/order/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -119,7 +115,7 @@ const CheckoutForm = ({ order }) => {
           }}
         />
         <button
-          className="btn btn-success text-gray-100 mt-4 block mx-auto"
+          className="btn mt-4 block mx-auto"
           type="submit"
           disabled={!stripe}
         >
@@ -130,11 +126,11 @@ const CheckoutForm = ({ order }) => {
         <p className="text-red-500 text-center text-sm">{cardError}</p>
       )}
       {success && (
-        <div className="text-green-500">
+        <div className="text-green-500 py-2 text-center">
           {success}
           <p>
-            Your Transaction Id Is:
-            <span className="text-orange-500 text-center text-sm">
+            Your Transaction ID is:
+            <span className="text-orange-600 text-center text-sm ml-1 font-semibold">
               {transactionId}
             </span>
           </p>

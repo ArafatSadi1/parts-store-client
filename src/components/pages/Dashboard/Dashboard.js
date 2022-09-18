@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [dbUser, setDbUser] = useState({});
   useEffect(() => {
     const email = user?.email;
-    fetch(`https://protected-mountain-80420.herokuapp.com/user/${email}`, {
+    fetch(`https://parts-store.onrender.com/user/${email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -42,15 +42,13 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/myProfile">My Profile</NavLink>
           </li>
+          <li>
+            <NavLink to="/dashboard/myOrders">My Orders</NavLink>
+          </li>
           {dbUser.role === "admin" || (
-            <>
-              <li>
-                <NavLink to="/dashboard/myOrders">My Orders</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addReview">Add A Review</NavLink>
-              </li>
-            </>
+            <li>
+              <NavLink to="/dashboard/addReview">Add A Review</NavLink>
+            </li>
           )}
           {admin && (
             <>
@@ -68,7 +66,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
+                <NavLink to="/dashboard/makeAdmin">Make an Admin</NavLink>
               </li>
             </>
           )}

@@ -38,7 +38,7 @@ const AddProduct = () => {
           available: available,
           minOrder: minOrder,
         };
-        fetch("https://protected-mountain-80420.herokuapp.com/product", {
+        fetch("https://parts-store.onrender.com/product", {
           method: "POST",
           headers: {
             "content-type": "application/json",

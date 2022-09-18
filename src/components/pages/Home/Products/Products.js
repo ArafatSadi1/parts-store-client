@@ -5,9 +5,7 @@ import Product from "./Product";
 
 const Products = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/products").then(
-      (res) => res.json()
-    )
+    fetch("https://parts-store.onrender.com/products").then((res) => res.json())
   );
 
   if (isLoading) {

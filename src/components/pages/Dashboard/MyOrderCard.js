@@ -37,7 +37,7 @@ const MyOrderCard = ({ order, setDeleteOrder, deleteOrder, refetch }) => {
             <div className="mt-2">
               <Link
                 to={`/dashboard/payment/${_id}`}
-                className="btn btn-accent text-gray-500 lg:mr-2"
+                className="btn btn-accent lg:mr-2"
               >
                 Payment
               </Link>

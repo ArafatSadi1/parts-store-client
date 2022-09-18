@@ -31,7 +31,7 @@ const PurchaseForm = ({ product }) => {
       customerAddress: address,
       orderQty: quantity,
     };
-    fetch("https://protected-mountain-80420.herokuapp.com/order", {
+    fetch("https://parts-store.onrender.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",

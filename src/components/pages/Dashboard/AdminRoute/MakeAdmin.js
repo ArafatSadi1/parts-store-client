@@ -9,7 +9,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/users", {
+    fetch("https://parts-store.onrender.com/users", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -21,16 +21,13 @@ const MakeAdmin = () => {
     return <Loading></Loading>;
   }
   const handleMakeAdmin = (email) => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/user/admin/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch(`https://parts-store.onrender.com/user/admin/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => {
         if (res.status === 403) {
           toast.error("Failed to Add New Admin");

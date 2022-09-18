@@ -11,7 +11,7 @@ const ManageAllOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("https://protected-mountain-80420.herokuapp.com/orders", {
+    fetch("https://parts-store.onrender.com/orders", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -20,16 +20,13 @@ const ManageAllOrders = () => {
     }).then((res) => res.json())
   );
   const handleShipped = (id) => {
-    fetch(
-      `https://protected-mountain-80420.herokuapp.com/order/shipped/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch(`https://parts-store.onrender.com/order/shipped/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
