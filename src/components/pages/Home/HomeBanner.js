@@ -22,7 +22,7 @@ const HomeBanner = () => {
           </div>
         </div>
       </div>
-      <div className="rounded-2xl mx-auto mb-[-130px] mt-[-50px] relative z-20 bg-primary shadow-lg p-10 w-5/6">
+      <div className="rounded mx-auto mb-[-130px] mt-[-50px] relative z-20 bg-primary shadow-lg p-10 w-5/6">
         <h1 className="text-2xl mb-5 text-white font-bold">
           Select Your Vehicles
         </h1>
@@ -30,25 +30,25 @@ const HomeBanner = () => {
           <input
             type="text"
             placeholder="Make"
-            className="input input-bordered w-full"
+            className="input input-bordered rounded w-full"
           />
           <input
             type="number"
             placeholder="Year"
-            className="input input-bordered w-full"
+            className="input input-bordered rounded w-full"
           />
           <input
             type="text"
             placeholder="Model"
-            className="input input-bordered w-full"
+            className="input input-bordered rounded w-full"
           />
           <input
             type="text"
             placeholder="Engine Model"
-            className="input input-bordered w-full"
+            className="input input-bordered rounded w-full"
           />
           <input
-            className="btn btn-neutral"
+            className="btn btn-neutral rounded"
             type="submit"
             value="Find My Parts"
           />

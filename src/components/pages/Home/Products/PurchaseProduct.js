@@ -45,15 +45,15 @@ const PurchaseProduct = () => {
           </p>
           <p className="font-semibold text-lg">
             Price: ${product.price}/
-            <span className="text-gray-500 font-semibold">piece</span>
+            <span className="text-gray-500 ml-1">piece</span>
           </p>
           <p className="font-semibold text-lg">
             Available Quantity: {product.available}
-            <span className="text-gray-500 font-semibold">piece</span>
+            <span className="text-gray-500 ml-1">piece</span>
           </p>
           <p className="font-semibold text-lg">
             Minimum Order: {product.minOrder}
-            <span className="text-gray-500 font-semibold">piece</span>
+            <span className="text-gray-500 ml-1">piece</span>
           </p>
           <PurchaseForm product={product}></PurchaseForm>
         </div>

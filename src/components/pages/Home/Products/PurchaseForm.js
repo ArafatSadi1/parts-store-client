@@ -69,14 +69,14 @@ const PurchaseForm = ({ product }) => {
             type="text"
             readOnly
             value={user?.displayName}
-            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2"
             required
           />
           <input
             type="text"
             readOnly
             value={user?.email}
-            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2"
           />
         </div>
 
@@ -85,31 +85,32 @@ const PurchaseForm = ({ product }) => {
             type="text"
             name="address"
             placeholder="Your Address"
-            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2"
             required
           />
           <input
             type="text"
             name="phone"
             placeholder="Phone Number"
-            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2"
             required
           />
         </div>
+
         <div className="flex flex-col lg:flex-row gap-2">
           <input
             type="number"
             onChange={handleQuantity}
             name="quantity"
             placeholder="Your Quantity"
-            className="input input-bordered border-secondary max-w-xs w-full mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none"
             required
           />
 
           <input
             type="submit"
             disabled={minOrderErr || maxOrderErr}
-            className="btn btn-secondary text-white font-semibold max-w-xs w-full lg:w-56 block mt-2"
+            className="btn btn-primary text-white font-semibold w-1/2 mt-2"
             value="Order Now"
           />
         </div>
