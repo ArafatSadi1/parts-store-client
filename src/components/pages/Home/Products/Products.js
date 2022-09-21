@@ -12,7 +12,7 @@ const Products = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="pt-52 mb-8 p-8 bg-base-100">
+    <div className="pt-52 pb-8 p-8 bg-base-100">
       <h1 className="text-5xl text-neutral font-bold text-center">
         Our Products
       </h1>
