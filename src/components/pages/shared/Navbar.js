@@ -4,11 +4,18 @@ import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "./Loading";
 import { signOut } from "firebase/auth";
+import { BiDownArrow } from "react-icons/bi";
 
 const Navbar = () => {
   const [user, loading] = useAuthState(auth);
+  const firstLetter = user?.displayName?.slice(0, 1);
+
   if (loading) {
-    return <Loading></Loading>;
+    return (
+      <p className="hidden">
+        <Loading></Loading>
+      </p>
+    );
   }
   const handleSignOut = () => {
     localStorage.removeItem("accessToken");
@@ -16,36 +23,103 @@ const Navbar = () => {
   };
   const navbarItems = (
     <>
-      <li>
-        <NavLink className="font-semibold" to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink className="font-semibold" to="/contactUs">Contact Us</NavLink>
-      </li>
-      <li>
-        <NavLink className="font-semibold" to="/blogs">Blogs</NavLink>
-      </li>
-      <li>
-        <NavLink className="font-semibold" to="/myPortfolio">My Portfolio</NavLink>
-      </li>
+      <span>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-primary font-semibold"
+              : ""
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
+      </span>
+      <span>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-primary font-semibold"
+              : ""
+          }
+          to="/contactUs"
+        >
+          Contact Us
+        </NavLink>
+      </span>
+      <span>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-primary font-semibold"
+              : ""
+          }
+          to="/blogs"
+        >
+          Blogs
+        </NavLink>
+      </span>
+      <span>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-primary font-semibold"
+              : ""
+          }
+          to="/myPortfolio"
+        >
+          My Portfolio
+        </NavLink>
+      </span>
       {user && (
-        <li>
-          <NavLink className="font-semibold" to="/dashboard/myProfile">Dashboard</NavLink>
-        </li>
+        <span>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "border-b-2 border-primary font-semibold"
+                : ""
+            }
+            to="/dashboard/myProfile"
+          >
+            Dashboard
+          </NavLink>
+        </span>
       )}
       {user ? (
         <>
-          <button
-            onClick={handleSignOut}
-            className="btn btn-outline mt-2 lg:mt-0"
-          >
-            Sign Out
-          </button>
+          <div className="dropdown dropdown-end">
+            <label
+              tabIndex={0}
+              className="cursor-pointer flex justify-center items-center gap-2"
+            >
+              <BiDownArrow />
+              <div className="w-8 rounded-full ">
+                <p className="w-full rounded-full border border-primary p-1 flex justify-center items-center bg-gray-200">
+                  <span className="text-md font-semibold uppercase">{firstLetter}</span>
+                </p>
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-6 shadow bg-base-100 rounded w-52"
+            >
+              <span>
+                <button
+                  className="font-semibold rounded py-2 px-3 bg-primary text-white hover:bg-[#0166d9]"
+                  onClick={handleSignOut}
+                >
+                  Logout
+                </button>
+              </span>
+            </ul>
+          </div>
         </>
       ) : (
-        <li>
-          <NavLink className="font-semibold" to="/login">Log in</NavLink>
-        </li>
+        <span>
+          <NavLink className="font-semibold" to="/login">
+            Log in
+          </NavLink>
+        </span>
       )}
     </>
   );
@@ -77,7 +151,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-env ml-auto">
         <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal p-0 gap-2">{navbarItems}</ul>
+          <ul className="menu menu-horizontal gap-8">{navbarItems}</ul>
         </div>
         <div className="dropdown dropdown-left">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
