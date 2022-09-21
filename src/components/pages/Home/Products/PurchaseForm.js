@@ -69,14 +69,14 @@ const PurchaseForm = ({ product }) => {
             type="text"
             readOnly
             value={user?.displayName}
-            className="input input-bordered border-primary w-1/2 mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none rounded"
             required
           />
           <input
             type="text"
             readOnly
             value={user?.email}
-            className="input input-bordered border-primary w-1/2 mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none rounded"
           />
         </div>
 
@@ -85,14 +85,14 @@ const PurchaseForm = ({ product }) => {
             type="text"
             name="address"
             placeholder="Your Address"
-            className="input input-bordered border-primary w-1/2 mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none rounded"
             required
           />
           <input
             type="text"
             name="phone"
             placeholder="Phone Number"
-            className="input input-bordered border-primary w-1/2 mt-2"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none rounded"
             required
           />
         </div>
@@ -103,14 +103,14 @@ const PurchaseForm = ({ product }) => {
             onChange={handleQuantity}
             name="quantity"
             placeholder="Your Quantity"
-            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none"
+            className="input input-bordered border-primary w-1/2 mt-2 focus:outline-none rounded"
             required
           />
 
           <input
             type="submit"
             disabled={minOrderErr || maxOrderErr}
-            className="btn btn-primary text-white font-semibold w-1/2 mt-2"
+            className="bg-primary text-white font-semibold w-1/2 mt-2 rounded hover:bg-[#0166d9] duration-300"
             value="Order Now"
           />
         </div>

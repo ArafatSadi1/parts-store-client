@@ -6,7 +6,7 @@ import CountUp from "react-countup";
 
 const BusinessSummery = () => {
   return (
-    <div className="mb-12 py-20 p-8 bg-slate-100">
+    <div className="mb-12 py-20 p-8">
       <h4 className="text-lg text-center text-secondary">
         We Try To Understand Client Expectation
       </h4>

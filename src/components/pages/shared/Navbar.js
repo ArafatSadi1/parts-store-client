@@ -105,7 +105,7 @@ const Navbar = () => {
             >
               <span>
                 <button
-                  className="font-semibold rounded py-2 px-3 bg-primary text-white hover:bg-[#0166d9]"
+                  className="font-semibold rounded py-2 px-3 bg-primary text-white hover:bg-[#0166d9] duration-300"
                   onClick={handleSignOut}
                 >
                   Logout
