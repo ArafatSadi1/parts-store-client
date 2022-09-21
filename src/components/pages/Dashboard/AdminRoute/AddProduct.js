@@ -72,15 +72,39 @@ const AddProduct = () => {
         <form className="lg:w-2/5 mx-auto" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
-              type="file"
-              className="input input-bordered border-secondary w-full pt-2"
               {...register("image", {
                 required: {
                   value: true,
                   message: "Image is Required",
                 },
               })}
+              type="file"
+              name="image"
+              id="image"
+              hidden
             />
+            <div
+              className="tooltip tooltip-primary hover:tooltip-open tooltip-right"
+              data-tip="Upload Image"
+            >
+              <label
+                className="hover:shadow hover:shadow-primary cursor-pointer w-20 h-11 rounded flex justify-center items-center bg-primary text-3xl  text-base-100  hover:bg-[#0166d9] duration-300"
+                htmlFor="image"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </label>
+            </div>
             <label className="label">
               {errors.image?.type === "required" && (
                 <span className="label-text-alt text-red-500">
@@ -93,7 +117,7 @@ const AddProduct = () => {
             <input
               type="text"
               placeholder="Product Name"
-              className="input input-bordered border-secondary w-full"
+              className="input input-bordered border-primary w-full rounded"
               {...register("name", {
                 required: {
                   value: true,
@@ -112,7 +136,7 @@ const AddProduct = () => {
           <div>
             <textarea
               type="text"
-              className="textarea input-bordered border-secondary w-full"
+              className="textarea input-bordered border-primary w-full rounded"
               placeholder="Product Description"
               {...register("about", {
                 required: {
@@ -133,7 +157,7 @@ const AddProduct = () => {
             <input
               type="number"
               placeholder="Price"
-              className="input input-bordered border-secondary w-full"
+              className="input input-bordered border-primary w-full rounded"
               {...register("price", {
                 required: {
                   value: true,
@@ -154,7 +178,7 @@ const AddProduct = () => {
               <input
                 type="number"
                 placeholder="Available Quantity"
-                className="input input-bordered border-secondary w-full"
+                className="input input-bordered border-primary w-full rounded"
                 {...register("available", {
                   required: {
                     value: true,
@@ -174,7 +198,7 @@ const AddProduct = () => {
               <input
                 type="number"
                 placeholder="Minimum Order Quantity"
-                className="input input-bordered border-secondary w-full"
+                className="input input-bordered border-primary w-full rounded"
                 {...register("minOrder", {
                   required: {
                     value: true,
@@ -191,7 +215,7 @@ const AddProduct = () => {
               </label>
             </div>
           </div>
-          <input type="submit" className="btn w-full" value="Add Product" />
+          <input type="submit" className="btn w-full rounded" value="Add Product" />
         </form>
       </div>
     </div>

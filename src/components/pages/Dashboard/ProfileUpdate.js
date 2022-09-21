@@ -42,31 +42,31 @@ const ProfileUpdate = ({ email }) => {
           type="text"
           name="education"
           placeholder="Education"
-          className="input input-bordered border-secondary w-3/4"
+          className="input input-bordered border-secondary w-3/4 rounded"
           required
         />
         <input
           type="text"
           name="address"
           placeholder="Your Address"
-          className="input input-bordered border-secondary w-3/4"
+          className="input input-bordered border-secondary w-3/4 rounded"
           required
         />
         <input
           type="text"
           name="phone"
           placeholder="Phone number"
-          className="input input-bordered border-secondary w-3/4"
+          className="input input-bordered border-secondary w-3/4 rounded"
           required
         />
         <input
           type="text"
           name="linkedIn"
           placeholder="Your LinkedIn Profile Link"
-          className="input input-bordered border-secondary w-3/4"
+          className="input input-bordered border-secondary w-3/4 rounded"
           required
         />
-        <input type="submit" value="Update" className="btn btn-primary w-3/4" />
+        <input type="submit" value="Update" className="btn btn-primary w-3/4 rounded" />
       </form>
     </div>
   );

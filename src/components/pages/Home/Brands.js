@@ -25,7 +25,7 @@ const Brands = () => {
   };
 
   return (
-    <div className="py-32 p-8 bg-base-100">
+    <div className="pt-16 pb-28 p-8 bg-base-100">
       <h1 className="text-5xl text-neutral font-bold text-center">
         Brands We Trust
       </h1>

@@ -37,37 +37,82 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content gap-2">
+        <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content gap-8">
           {/* <!-- Sidebar content here --> */}
-          <li>
-            <NavLink to="/dashboard/myProfile">My Profile</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/myOrders">My Orders</NavLink>
-          </li>
+          <span>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+              }
+              to="/dashboard/myProfile"
+            >
+              My Profile
+            </NavLink>
+          </span>
+          <span>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+              }
+              to="/dashboard/myOrders"
+            >
+              My Orders
+            </NavLink>
+          </span>
           {dbUser.role === "admin" || (
-            <li>
-              <NavLink to="/dashboard/addReview">Add A Review</NavLink>
-            </li>
+            <span>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+                }
+                to="/dashboard/addReview"
+              >
+                Add A Review
+              </NavLink>
+            </span>
           )}
           {admin && (
             <>
-              <li>
-                <NavLink to="/dashboard/addProduct">Add A Product</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/manageProducts">
+              <span>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+                  }
+                  to="/dashboard/addProduct"
+                >
+                  Add A Product
+                </NavLink>
+              </span>
+              <span>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+                  }
+                  to="/dashboard/manageProducts"
+                >
                   Manage All Products
                 </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/manageAllOrders">
+              </span>
+              <span>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+                  }
+                  to="/dashboard/manageAllOrders"
+                >
                   Manage All Orders
                 </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/makeAdmin">Make an Admin</NavLink>
-              </li>
+              </span>
+              <span>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "pl-2 border-l-2 border-primary font-semibold text-primary" : ""
+                  }
+                  to="/dashboard/makeAdmin"
+                >
+                  Make an Admin
+                </NavLink>
+              </span>
             </>
           )}
         </ul>

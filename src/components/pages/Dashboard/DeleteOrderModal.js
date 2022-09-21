@@ -29,10 +29,10 @@ const DeleteOrderModal = ({ deleteOrder, setDeleteOrder, refetch }) => {
             you want to delete {productName} from your order!!
           </p>
           <div className="modal-action">
-            <button onClick={handleDeleteOrder} className="btn btn-error">
+            <button onClick={handleDeleteOrder} className="btn btn-error rounded">
               Delete
             </button>
-            <label htmlFor="delete-modal" className="btn">
+            <label htmlFor="delete-modal" className="btn rounded">
               Cancel
             </label>
           </div>
