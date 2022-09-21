@@ -55,7 +55,7 @@ const Login = () => {
         <form onSubmit={handleLogin} className="form-control">
           <input
             ref={getEmail}
-            className="input input-bordered"
+            className="input input-bordered rounded"
             type="email"
             name="email"
             placeholder="Email"
@@ -64,7 +64,7 @@ const Login = () => {
           />
 
           <input
-            className="input input-bordered mt-4"
+            className="input input-bordered mt-4 rounded"
             placeholder="Password"
             type="password"
             name="password"
@@ -78,12 +78,12 @@ const Login = () => {
           <p className="text-error text-sm">{error?.message}</p>
           <input
             type="submit"
-            className="btn btn-secondary text-white font-semibold"
+            className="btn btn-secondary text-white font-semibold rounded"
             value="Log in"
           />
           <p className="text-sm mt-2 text-center">
             Need an account?
-            <Link className="text-secondary" to="/signup">
+            <Link className="text-secondary ml-1 font-semibold" to="/signup">
               Sign up
             </Link>
           </p>

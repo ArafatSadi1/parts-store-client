@@ -52,7 +52,7 @@ const SignUp = () => {
         <h2 className="text-2xl font-bold mb-8">Create an account</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="form-control">
           <input
-            className="input input-bordered"
+            className="input input-bordered rounded"
             placeholder="your Name"
             {...register("name", {
               required: {
@@ -70,7 +70,7 @@ const SignUp = () => {
           </label>
 
           <input
-            className="input input-bordered"
+            className="input input-bordered rounded"
             type="email"
             placeholder="Email"
             {...register("email", {
@@ -98,7 +98,7 @@ const SignUp = () => {
           </label>
 
           <input
-            className="input input-bordered"
+            className="input input-bordered rounded"
             placeholder="Password"
             type="password"
             {...register("password", {
@@ -126,7 +126,7 @@ const SignUp = () => {
           </label>
 
           <input
-            className="input input-bordered"
+            className="input input-bordered rounded"
             placeholder="Confirm Password"
             type="password"
             {...register("confirmPass", {
@@ -161,12 +161,12 @@ const SignUp = () => {
           <p className="text-error text-sm">{signupError?.message}</p>
           <input
             type="submit"
-            className="btn btn-secondary text-white font-semibold"
+            className="btn btn-secondary text-white font-semibold rounded"
             value="Sign up"
           />
           <p className="text-sm mt-2 text-center">
             Already have an account?
-            <Link className="text-secondary" to="/login">
+            <Link className="text-secondary ml-1 font-semibold" to="/login">
               Log in
             </Link>
           </p>

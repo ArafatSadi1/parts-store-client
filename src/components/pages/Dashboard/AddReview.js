@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import { FaStar } from "react-icons/fa";
 import minus from "../../../assets/icons/minus-sign.png";
 import plus from "../../../assets/icons/plus.png";
 import auth from "../../../firebase.init";
@@ -8,17 +9,9 @@ import Loading from "../shared/Loading";
 
 const AddReview = () => {
   const [user, loading] = useAuthState(auth);
+  const [starRating, setStarRating] = useState(null);
+  const [hover, setHover] = useState(null);
   const [rating, setRating] = useState(5);
-  const handleDecrease = () => {
-    if (rating > 1) {
-      setRating((rating) => rating - 0.5);
-    }
-  };
-  const handleIncrease = () => {
-    if (rating < 5) {
-      setRating((rating) => rating + 0.5);
-    }
-  };
   if (loading) {
     return <Loading></Loading>;
   }
@@ -28,7 +21,7 @@ const AddReview = () => {
     const review = {
       name: user.displayName,
       text: reviewText,
-      rating: rating,
+      rating: starRating,
     };
     fetch(`https://parts-store.onrender.com/review`, {
       method: "POST",
@@ -53,31 +46,43 @@ const AddReview = () => {
           type="text"
           value={user.displayName}
           readOnly
-          className="input input-bordered border-secondary w-full"
+          className="input input-bordered border-primary w-full rounded focus:outline-none"
         />
         <textarea
           name="review"
-          className="textarea textarea-bordered border-secondary w-full"
+          className="textarea textarea-bordered border-primary w-full rounded focus:outline-none"
           placeholder="Enter Your Review"
         ></textarea>
-        <div className="pl-2 border border-secondary rounded-xl flex w-44">
-          <button
-            type="button"
-            onClick={handleDecrease}
-            className="btn btn-ghost"
-          >
-            <img width={15} src={minus} alt="" />
-          </button>
-          <input type="text" value={rating} className="input w-16 text-lg" />
-          <button
-            type="button"
-            onClick={handleIncrease}
-            className="btn btn-ghost"
-          >
-            <img width={15} src={plus} alt="" />
-          </button>
+        <div className="mb-3 flex gap-1">
+          {[...Array(5)]?.map((star, i) => {
+            const ratingValue: any = i + 1;
+            return (
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value={ratingValue}
+                  className="hidden"
+                  onClick={() => setStarRating(ratingValue)}
+                />
+                <FaStar
+                  className="cursor-pointer duration-300"
+                  color={
+                    ratingValue <= (hover || starRating) ? "#ffc107" : "#e4e5e9"
+                  }
+                  size={30}
+                  onMouseEnter={() => setHover(ratingValue)}
+                  onMouseLeave={() => setHover(null)}
+                />
+              </label>
+            );
+          })}
         </div>
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input
+          type="submit"
+          value="Add"
+          className="btn btn-primary rounded focus:outline-none"
+        />
       </form>
     </div>
   );

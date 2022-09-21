@@ -17,21 +17,21 @@ const BusinessSummery = () => {
         <div className="bg-base-100 flex flex-col justify-center items-center p-4">
           <img width={70} src={flag} alt="Shoes" />
           <h4 className="text-2xl font-bold text-secondary mt-4">
-            <CountUp start={0} end={72} duration={5} enableScrollSpy />+
+            <CountUp start={60} end={72} duration={1} enableScrollSpy />+
           </h4>
           <h2 className="text-3xl font-bold text-neutral">Countries</h2>
         </div>
         <div className="bg-base-100 flex flex-col justify-center items-center p-4">
           <img width={70} src={carParts} alt="Shoes" />
           <h4 className="text-2xl font-bold text-secondary mt-4">
-            <CountUp start={0} end={450} duration={5} enableScrollSpy />+
+            <CountUp start={440} end={450} duration={1} enableScrollSpy />+
           </h4>
           <h2 className="text-3xl font-bold text-neutral">Complete Projects</h2>
         </div>
         <div className="bg-base-100 flex flex-col justify-center items-center p-4">
           <img width={70} src={users} alt="Shoes" />
           <h4 className="text-2xl font-bold text-secondary mt-4">
-            <CountUp start={0} end={355} duration={5} enableScrollSpy />+
+            <CountUp start={340} end={355} duration={1} enableScrollSpy />+
           </h4>
           <h2 className="text-3xl font-bold text-neutral">Happy Client</h2>
         </div>
